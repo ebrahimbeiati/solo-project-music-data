@@ -19,7 +19,7 @@ export const Questions = {
     const totals = DataHelpers.sumByKey(
       listens,
       (l) => l.song_id,
-      (l) => l.msPlayed,
+      (l) => getSong(l.song_id).duration,
     );
     return DataHelpers.formatSong(DataHelpers.maxByValue(totals));
   },
@@ -41,7 +41,7 @@ export const Questions = {
     const totals = DataHelpers.sumByKey(
       listens,
       (l) => getSong(l.song_id).artist,
-      (l) => l.msPlayed,
+      (l) => getSong(l.song_id).duration,
     );
     return DataHelpers.maxByValue(totals);
   },
@@ -66,7 +66,7 @@ export const Questions = {
           bestSongID = currentSongID;
         }
       } else {
-        currentSongID = listens[i].songID;
+        currentSongID = listens[i].song_id;
         currentLength = 1;
       }
     }
@@ -93,6 +93,7 @@ export const Questions = {
     const commonSongs = allDays.reduce(
       (common, daySongs) =>
         new Set([...common].filter((id) => daySongs.has(id))),
+      allDays[0],
     );
 
     if (!commonSongs.size) return null;
