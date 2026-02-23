@@ -15,7 +15,7 @@ We have provided a `data.js` file, which contains three functions to provide dat
 
 1. `getUserIDs()`: when called, returns an array of strings, each of which is a user ID.
 1. `getListenEvents(userID)`: when called, returns an array of objects, each of which contains information about a single time that the given user listened to a song. The listen events are sorted by when they happened, oldest to newest. The timestamps should be interpreted as in the user's current local time zone.
-2. `getSong(songID)`: when called with one string as an argument, returns an an object containing information about a single song.
+1. `getSong(song_id)`: when called with one string as an argument, returns an an object containing information about a single song.
 
 ## Requirements
 
@@ -53,29 +53,29 @@ Note that when running locally, in order to open a web page which uses modules, 
 
 All of the below requirements must be met for the project to be considered complete:
 
-* The website must contain a drop-down which lists four users.
-* Selecting a user must display answers relevant to that user (see table below).
-* The code written to calculate the answers to the questions must seem like it could handle different data if it were supplied, including the following edge-cases:
-  * User 4 has no data, so no questions apply to the user. Some intelligible statement should be shown to the user (e.g. "This user didn't listen to any songs.").
-  * If a question doesn't apply (e.g. if no songs were ever listened to on a Friday night), the interface should completely hide the question and answer. Displaying the question and an empty result, or any kind of error, is not acceptable.
-  * If fewer than three (but more than zero) genres were listened to the site should list the top genres listened to. It must not display text like "Top 3 genres", but may say "Top genres" or "Top 2 genres" or similar.
-* Unit tests must be written for at least one non-trivial function.
-* The website must score 100 for accessibility in Lighthouse
+- The website must contain a drop-down which lists four users.
+- Selecting a user must display answers relevant to that user (see table below).
+- The code written to calculate the answers to the questions must seem like it could handle different data if it were supplied, including the following edge-cases:
+  - User 4 has no data, so no questions apply to the user. Some intelligible statement should be shown to the user (e.g. "This user didn't listen to any songs.").
+  - If a question doesn't apply (e.g. if no songs were ever listened to on a Friday night), the interface should completely hide the question and answer. Displaying the question and an empty result, or any kind of error, is not acceptable.
+  - If fewer than three (but more than zero) genres were listened to the site should list the top genres listened to. It must not display text like "Top 3 genres", but may say "Top genres" or "Top 2 genres" or similar.
+- Unit tests must be written for at least one non-trivial function.
+- The website must score 100 for accessibility in Lighthouse
 
 Bonus points (which don't mean anything):
 
-* Re-using code between the "most often" questions (i.e. questions 1, 2, 3, 4).
-* End-to-end tests.
+- Re-using code between the "most often" questions (i.e. questions 1, 2, 3, 4).
+- End-to-end tests.
 
 Expected output data:
-| Question                     | User 1                                      | User 2                                                            | User 3                                                                                                               |
+| Question | User 1 | User 2 | User 3 |
 | ---------------------------- | ------------------------------------------- | ----------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| Most listened song (count)   | The Swell Season - When Your Mind's Made Up | Frank Turner - I Still Believe                                    | Frank Turner - Be More Kind                                                                                          |
-| Most listened song (time)    | Faithless - Insomnia                        | Frank Turner - I Still Believe                                    | Faithless - Insomnia                                                                                                 |
-| Most listened artist (count) | Frank Turner                                | Frank Turner                                                      | Frank Turner                                                                                                         |
-| Most listened artist (time)  | Frank Turner                                | Frank Turner                                                      | Frank Turner                                                                                                         |
-| Friday night song (count)    | The Swell Season - When Your Mind's Made Up | Frank Turner - I Still Believe                                    | <no Friday listens - must not be displayed>                                                                          |
-| Friday night song (time)     | The Swell Season - When Your Mind's Made Up | Frank Turner - Photosynthesis                                     | <no Friday listens - must not be displayed>                                                                          |
-| Longest streak song          | The King Blues - I Got Love (length: 34)    | Frank Turner - I Still Believe (length: 44)                       | Two values with length 42 (can show either or both): The Divine Comedy - Tonight We Fly, Frank Turner - Be More Kind |
-| Every day songs              | The Swell Season - When Your Mind's Made Up | Frank Turner - Photosynthesis, The Divine Comedy - Tonight We Fly | <no songs listened to every day - must not be displayed>                                                             |
-| Top three genres             | Pop, Folk, Punk                             | Pop (Must not say 'top 3 genres' as there are not 3)              | Pop, Folk, House                                                                                                     |
+| Most listened song (count) | The Swell Season - When Your Mind's Made Up | Frank Turner - I Still Believe | Frank Turner - Be More Kind |
+| Most listened song (time) | Faithless - Insomnia | Frank Turner - I Still Believe | Faithless - Insomnia |
+| Most listened artist (count) | Frank Turner | Frank Turner | Frank Turner |
+| Most listened artist (time) | Frank Turner | Frank Turner | Frank Turner |
+| Friday night song (count) | The Swell Season - When Your Mind's Made Up | Frank Turner - I Still Believe | <no Friday listens - must not be displayed> |
+| Friday night song (time) | The Swell Season - When Your Mind's Made Up | Frank Turner - Photosynthesis | <no Friday listens - must not be displayed> |
+| Longest streak song | The King Blues - I Got Love (length: 34) | Frank Turner - I Still Believe (length: 44) | Two values with length 42 (can show either or both): The Divine Comedy - Tonight We Fly, Frank Turner - Be More Kind |
+| Every day songs | The Swell Season - When Your Mind's Made Up | Frank Turner - Photosynthesis, The Divine Comedy - Tonight We Fly | <no songs listened to every day - must not be displayed> |
+| Top three genres | Pop, Folk, Punk | Pop (Must not say 'top 3 genres' as there are not 3) | Pop, Folk, House |
