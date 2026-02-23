@@ -1,8 +1,25 @@
-<!DOCTYPE html>
-<html>
+  <!DOCTYPE html>
+  <html lang="en">
   <head>
-    <script type="module" src="script.mjs"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Music data</title>
   </head>
   <body>
+  
+    <main>
+      <h1>Music data</h1>
+
+      <section>
+        <label for="select-user">Select a user:</label>
+        <select id="select-user">
+          <option value=""> Please choose a user</option>
+        </select>
+        <select aria-live="polite" id="answer"></select>
+      </section>
+
+    </main>
+  <script type="module" src="script.mjs"></script>
   </body>
-</html>
+  </html>
