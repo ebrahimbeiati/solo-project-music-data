@@ -4,5 +4,8 @@
   "main": "script.js",
   "scripts": {
     "test": "node common.test.mjs"
+  },
+  "devDependencies": {
+    "jest": "^30.2.0"
   }
 }
