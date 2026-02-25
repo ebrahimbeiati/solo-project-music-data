@@ -1,5 +1,3 @@
-// import getsong from data.mjs
-
 import { getSong } from "./data.mjs";
 
 //Checking if a listen event happened on Friday night between 17:00 - Saturday  4:00
@@ -203,3 +201,17 @@ export function computeAnswers(listenEvents) {
     topThreeGenres: topThreeGenres(listenEvents),
   };
 }
+
+// Exporting individual functions for testing purposes
+export default { 
+    mostListenedSongByCount,
+    mostListenedArtistByCount,
+    mostListenedSongFridayByCount,
+    mostListenedSongByTime,
+    mostListenedArtistByTime,
+    longestSongStreak,
+    songsListenedEveryDay,
+    topThreeGenres,
+    computeAnswers,
+    getSong
+};
