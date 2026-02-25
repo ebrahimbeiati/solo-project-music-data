@@ -47,7 +47,13 @@ if(results.mostListenedArtistByCount){
 const mostFriday = results.mostListenedSongFridayByCount;
 if(mostFriday?.song){
   add(
-    `Most listened song on Fridays: ${mostFriday.song.title} by ${mostFriday.song.artist} (${mostFriday.count} listens)`
+    `Most listened song on Friday night (by count): ${mostFriday.song.title} by ${mostFriday.song.artist} (${mostFriday.count} listens)`
+  );
+}
+const fridayByTime = results.mostListenedSongFridayByTime;
+if(fridayByTime?.song){
+    add(
+      `Most listened song on Friday night by time: ${fridayByTime.song.title} by ${fridayByTime.song.artist} (${fridayByTime.time} seconds listened)`
   );
 }
 

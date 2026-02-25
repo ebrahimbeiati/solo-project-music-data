@@ -80,6 +80,28 @@ function mostListenedSongFridayByCount(listenEvents) {
   ? { song: getSong(mostListenedSong), count: maxCount } 
   : null;
 }
+//for friday night by time
+function mostListenedSongFridayByTime(listenEvents) {
+  const counts = {};
+
+  listenEvents.forEach((e) => {
+    const date = new Date(e.timestamp);
+    if(isFridayNight(date)) {
+      const duration = getSong(e.song_id).duration_seconds;
+      counts[e.song_id] = (counts[e.song_id] || 0) + duration;
+    }
+  });
+  let bestSong = null;
+  let maxTime = 0;
+  
+  for (const song_id in counts) {
+    if (counts[song_id] > maxTime) {
+      maxTime = counts[song_id];
+      bestSong = song_id;
+    }
+  }
+  return bestSong ? {song: getSong(bestSong), time: maxTime} : null;
+}
 
 // question 4: most listened song by time
 
@@ -197,6 +219,7 @@ export function computeAnswers(listenEvents) {
     mostListenedSongByCount: mostListenedSongByCount(listenEvents),
     mostListenedArtistByCount: mostListenedArtistByCount(listenEvents),
     mostListenedSongFridayByCount: mostListenedSongFridayByCount(listenEvents),
+    mostListenedSongFridayByTime: mostListenedSongFridayByTime(listenEvents),
     mostListenedSongByTime: mostListenedSongByTime(listenEvents),
     mostListenedArtistByTime: mostListenedArtistByTime(listenEvents),
     longestSongStreak: longestSongStreak(listenEvents),
