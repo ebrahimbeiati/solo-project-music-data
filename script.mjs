@@ -4,7 +4,6 @@
 // Note that when running locally, in order to open a web page which uses modules, you must serve the directory over HTTP e.g. with https://www.npmjs.com/package/http-server
 // You can't open the index.html file using a file:// URL.
 
-
 import { getListenEvents, getUserIDs } from "./data.mjs";
 import { computeAnswers } from "./questions.mjs";
 
@@ -30,10 +29,13 @@ function displayResults(results) {
     p.textContent = text;
     answerContainer.appendChild(p);
   };
-  // check for Question 1: Most listened song by count
+
+// check for Question 1: Most listened song by count
   const mostByCount = results.mostListenedSongByCount;
 if(mostByCount?.song){
-  add(`Most listened song: ${mostByCount.song.title} by ${mostByCount.song.artist} (${mostByCount.count} listens)`);
+  add(
+    `Most listened song: ${mostByCount.song.title} by ${mostByCount.song.artist} (${mostByCount.count} listens)`
+  );
 }
 
 // check for Question 2: Most listened artist by count
@@ -44,13 +46,17 @@ if(results.mostListenedArtistByCount){
 // check for Question 3: Most listened song on Fridays by count
 const mostFriday = results.mostListenedSongFridayByCount;
 if(mostFriday?.song){
-  add(`Most listened song on Fridays: ${mostFriday.song.title} by ${mostFriday.song.artist} (${mostFriday.count} listens)`);
+  add(
+    `Most listened song on Fridays: ${mostFriday.song.title} by ${mostFriday.song.artist} (${mostFriday.count} listens)`
+  );
 }
 
 // check for Question 4: Most listened song by time
 const mostByTime = results.mostListenedSongByTime;
 if(mostByTime?.song){
-  add(`Most listened song by time: ${mostByTime.song.title} by ${mostByTime.song.artist} (${mostByTime.count} seconds listened)`);
+  add(
+    `Most listened song by time: ${mostByTime.song.title} by ${mostByTime.song.artist} (${mostByTime.time} seconds listened)`
+  );
 }
 
 // check for Question 5: Most listened artist by time
@@ -76,16 +82,25 @@ if(results.songsListenedEveryDay?.length){
 
 // check for Question 8: User's top three genres
 if(results.topThreeGenres?.length){
-  add(`User's top three genres: ${results.topThreeGenres.join(", ")}`);
+  add(
+    `Top ${results.topThreeGenres.length} genres: ${results.topThreeGenres.join(", ")}`
+  );
 }
 }
 
 // Event listener for user selection
 selectUser.addEventListener("change",  (e) => {
   const userId = e.target.value;
-  if(!userId) return;
+  if(!userId) {
+    answerContainer.innerHTML = "";
+    return;
+  };
 
   const listenEvents = getListenEvents(userId);
+  if(!listenEvents.length) {
+    answerContainer.innerHTML = "<p>This user didn’t listen to any songs.</p>";
+    return;
+  }
   const results = computeAnswers(listenEvents);
   displayResults(results);
 });

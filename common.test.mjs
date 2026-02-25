@@ -2,7 +2,7 @@ import assert from "node:assert";
 import test from "node:test";
 import questions from "./questions.mjs";
 
-// Sample listen events using REAL song IDs
+// Sample listen events 
 const listenEvents = [
   { user_id: 1, song_id: "song-1", timestamp: "2024-01-01T18:00:00Z" },
   { user_id: 1, song_id: "song-1", timestamp: "2024-01-02T18:00:00Z" },

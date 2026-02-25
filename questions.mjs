@@ -1,7 +1,6 @@
 import { getSong } from "./data.mjs";
 
 //Checking if a listen event happened on Friday night between 17:00 - Saturday  4:00
-
 function isFridayNight(date) {
   const day = date.getDay(); //0 = sun, 5= fri, 6 = sat
   const hour = date.getHours();
@@ -77,7 +76,9 @@ function mostListenedSongFridayByCount(listenEvents) {
     }
   }
 
-  return mostListenedSong ? getSong(mostListenedSong) : null;
+  return mostListenedSong 
+  ? { song: getSong(mostListenedSong), count: maxCount } 
+  : null;
 }
 
 // question 4: most listened song by time
@@ -99,7 +100,8 @@ function mostListenedSongByTime(listenEvents) {
       mostListenedSong = song_id;
     }
   }
-  return mostListenedSong ? getSong(mostListenedSong) : null;
+  return mostListenedSong ? {song: getSong(mostListenedSong), time: maxTime} 
+   : null;
 }
 
 // question 5: most listened artist by time
@@ -126,7 +128,6 @@ function mostListenedArtistByTime(listenEvents) {
   return mostListenedArtist;
 }
 //question 6: Longest streak (same song played consecutively)
-
 function longestSongStreak(listenEvents) {
   let maxStreak = 0;
   let currentStreak = 0;
@@ -163,7 +164,9 @@ function songsListenedEveryDay(listenEvents) {
     songDays[e.song_id] = songDays[e.song_id] || new Set();
     songDays[e.song_id].add(date);
   });
+
   const totalDays = Object.keys(days).length;
+  
   return Object.keys(songDays)
     .filter((song_id) => songDays[song_id].size === totalDays)
     .map((id) => getSong(id));
